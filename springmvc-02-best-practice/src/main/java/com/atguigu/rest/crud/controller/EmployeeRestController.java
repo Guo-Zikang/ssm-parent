@@ -3,10 +3,15 @@ package com.atguigu.rest.crud.controller;
 import com.atguigu.rest.crud.bean.Employee;
 import com.atguigu.rest.crud.common.R;
 import com.atguigu.rest.crud.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin // 允许跨域
 @RequestMapping("/api/v1")
@@ -46,9 +51,19 @@ public class EmployeeRestController {
      * @return
      */
     @PostMapping("/employee")
-    public R add(@RequestBody Employee employee) {
+    public R add(@RequestBody @Valid Employee employee) {
         employeeService.addEmployee(employee);
         return R.success();
+
+/*        if (!result.hasErrors()) {
+
+        }
+
+        Map<String, String> errorsMap = new HashMap<>();
+        for (FieldError fieldError : result.getFieldErrors()) {
+            errorsMap.put(fieldError.getField(), fieldError.getDefaultMessage());
+        }
+        return R.error(500, "校验失败", errorsMap);*/
     }
 
     /**
