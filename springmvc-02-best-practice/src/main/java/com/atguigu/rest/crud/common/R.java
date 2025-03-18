@@ -1,11 +1,18 @@
 package com.atguigu.rest.crud.common;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
+@Schema(description = "统一返回结果")
 public class R<T> {
+    @Schema(description = "业务的状态码")
     private Integer code;
+
+    @Schema(description = "提示信息")
     private String msg;
+
+    @Schema(description = "数据")
     private T data;
 
     public static <T> R<T> success(T data) {

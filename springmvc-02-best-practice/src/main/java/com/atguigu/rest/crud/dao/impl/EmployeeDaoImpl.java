@@ -23,20 +23,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
     @Override
     public void addEmployee(Employee employee) {
-        String sql = "insert into employee(name, age, email, gender, address, salary) values(?, ?, ?, ?, ?, ?)";
-        int update = jdbcTemplate.update(sql,
-                employee.getName(),
-                employee.getAge(),
-                employee.getEmail(),
-                employee.getGender(),
-                employee.getAddress(),
-                employee.getSalary());
-        System.out.println("新增成功，影响行数：" + update);
-    }
-
-    @Override
-    public void updateEmployee(Employee employee) {
-        String sql = "update employee set name = ?, age = ?, email = ?, gender = ?, address = ?, salary = ? where id = ?";
+        String sql = "insert into employee(name, age, email, gender, address, salary, birth) values(?, ?, ?, ?, ?, ?, ?)";
         int update = jdbcTemplate.update(sql,
                 employee.getName(),
                 employee.getAge(),
@@ -44,6 +31,21 @@ public class EmployeeDaoImpl implements EmployeeDao {
                 employee.getGender(),
                 employee.getAddress(),
                 employee.getSalary(),
+                employee.getBirth());
+        System.out.println("新增成功，影响行数：" + update);
+    }
+
+    @Override
+    public void updateEmployee(Employee employee) {
+        String sql = "update employee set name = ?, age = ?, email = ?, gender = ?, address = ?, salary = ?, birth = ? where id = ?";
+        int update = jdbcTemplate.update(sql,
+                employee.getName(),
+                employee.getAge(),
+                employee.getEmail(),
+                employee.getGender(),
+                employee.getAddress(),
+                employee.getSalary(),
+                employee.getBirth(),
                 employee.getId());
         System.out.println("更新成功，影响行数：" + update);
     }

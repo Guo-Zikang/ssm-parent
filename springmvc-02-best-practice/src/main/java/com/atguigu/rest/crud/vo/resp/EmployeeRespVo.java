@@ -1,21 +1,19 @@
-package com.atguigu.rest.crud.bean;
+package com.atguigu.rest.crud.vo.resp;
 
-import com.atguigu.rest.crud.annotation.Gender;
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class Employee {
+public class EmployeeRespVo {
     private Long id;
     private String name;
-    private Integer age;
     private String email;
     private String gender;
     private String address;
     private BigDecimal salary;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date birth;
 }
