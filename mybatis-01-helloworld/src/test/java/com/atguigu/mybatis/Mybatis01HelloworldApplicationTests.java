@@ -2,17 +2,41 @@ package com.atguigu.mybatis;
 
 import com.atguigu.mybatis.bean.Emp;
 import com.atguigu.mybatis.mapper.EmpMapper;
+import com.atguigu.mybatis.mapper.EmpReturnValueMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @SpringBootTest
 class Mybatis01HelloworldApplicationTests {
 
     @Autowired
     EmpMapper empMapper;
+
+    @Autowired
+    EmpReturnValueMapper empReturnValueMapper;
+
+    @Test
+    void testCountEmp() {
+        Long countEmp = empReturnValueMapper.countEmp();
+        System.out.println("countEmp = " + countEmp);
+
+        BigDecimal empSalaryById = empReturnValueMapper.getEmpSalaryById(1);
+        System.out.println("empSalaryById = " + empSalaryById);
+
+        empReturnValueMapper.getAll().forEach(System.out::println);
+        System.out.println("====================================");
+
+        Map<Integer, Emp> allEmpMap = empReturnValueMapper.getAllEmpMap();
+        System.out.println("allEmpMap = " + allEmpMap);
+        Emp emp = allEmpMap.get(1);
+        System.out.println("emp = " + emp);
+
+    }
 
     @Test
     void testGetAll() {

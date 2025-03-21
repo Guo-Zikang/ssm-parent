@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.atguigu.mybatis.mapper.EmpReturnValueMapper">
+
+    <select id="countEmp" resultType="java.lang.Long">
+        select count(*) from t_emp
+    </select>
+    <select id="getEmpSalaryById" resultType="java.math.BigDecimal">
+        select emp_salary from t_emp where id = #{id}
+    </select>
+    <select id="getAll" resultType="com.atguigu.mybatis.bean.Emp">
+        select * from t_emp
+    </select>
+    <select id="getAllEmpMap" resultType="com.atguigu.mybatis.bean.Emp">
+        select * from t_emp
+    </select>
+</mapper>
