@@ -21,4 +21,7 @@ public interface EmpReturnValueMapper {
     // 查询所有员工返回Map
     @MapKey("id")
     Map<Integer, Emp> getAllEmpMap();
+
+    // 根据id查询员工
+    Emp getEmpById(Integer id);
 }

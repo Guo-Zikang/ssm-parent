@@ -5,13 +5,26 @@
     <select id="countEmp" resultType="java.lang.Long">
         select count(*) from t_emp
     </select>
+
     <select id="getEmpSalaryById" resultType="java.math.BigDecimal">
         select emp_salary from t_emp where id = #{id}
     </select>
+
     <select id="getAll" resultType="com.atguigu.mybatis.bean.Emp">
         select * from t_emp
     </select>
+
     <select id="getAllEmpMap" resultType="com.atguigu.mybatis.bean.Emp">
         select * from t_emp
+    </select>
+
+    <resultMap id="EmpRM" type="com.atguigu.mybatis.bean.Emp">
+        <id column="id" property="id"/>
+        <result column="emp_name" property="empName"/>
+        <result column="emp_salary" property="empSalary"/>
+        <result column="age" property="age"/>
+    </resultMap>
+    <select id="getEmpById" resultMap="EmpRM">
+        select * from t_emp where id = #{id}
     </select>
 </mapper>

@@ -1,8 +1,12 @@
 package com.atguigu.mybatis;
 
+import com.atguigu.mybatis.bean.Customer;
 import com.atguigu.mybatis.bean.Emp;
+import com.atguigu.mybatis.bean.Order;
+import com.atguigu.mybatis.mapper.CustomerMapper;
 import com.atguigu.mybatis.mapper.EmpMapper;
 import com.atguigu.mybatis.mapper.EmpReturnValueMapper;
+import com.atguigu.mybatis.mapper.OrderMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +23,30 @@ class Mybatis01HelloworldApplicationTests {
 
     @Autowired
     EmpReturnValueMapper empReturnValueMapper;
+
+    @Autowired
+    OrderMapper orderMapper;
+
+    @Autowired
+    CustomerMapper customerMapper;
+
+    @Test
+    void test04() {
+        Customer customer = customerMapper.getCustomerByIdWithOrders(1L);
+        System.out.println("customer = " + customer);
+    }
+
+    @Test
+    void test03() {
+        Order order = orderMapper.getOrderByIdWithCustomer(1L);
+        System.out.println("order = " + order);
+    }
+
+    @Test
+    void test02() {
+        Emp empById = empReturnValueMapper.getEmpById(1);
+        System.out.println(empById);
+    }
 
     @Test
     void testCountEmp() {
