@@ -7,5 +7,5 @@ public class Emp {
     private Integer id;
     private String empName;
     private Integer age;
-    private double empSalary;
+    private Double empSalary;
 }
