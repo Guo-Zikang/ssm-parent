@@ -2,6 +2,7 @@ package com.atguigu.mybatis;
 
 import com.atguigu.mybatis.bean.Emp;
 import com.atguigu.mybatis.mapper.EmpDynamicSQLMapper;
+import com.atguigu.mybatis.service.EmpService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +17,46 @@ public class DynamicSQLTest {
 
     @Autowired
     EmpDynamicSQLMapper empDynamicSQLMapper;
+
+    @Autowired
+    EmpService empService;
+
+    @Test
+    public void test06() {
+        List<Emp> emps = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Emp emp = new Emp();
+            emp.setId(i + 10);
+            emp.setEmpSalary(50000.0D + i);
+            emps.add(emp);
+        }
+        empService.updateBatch(emps);
+    }
+
+    @Test
+    public void test05() {
+        List<Emp> emps = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Emp emp = new Emp();
+            emp.setId(i + 10);
+            emp.setEmpName("zhang" + (2 + i));
+            emps.add(emp);
+        }
+        empDynamicSQLMapper.updateEmps(emps);
+    }
+
+    @Test
+    public void test04() {
+        List<Emp> emps = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            Emp emp = new Emp();
+            emp.setEmpName("张" + i);
+            emp.setAge(20 + i);
+            emp.setEmpSalary(10000.0D + i);
+            emps.add(emp);
+        }
+        empDynamicSQLMapper.addEmps(emps);
+    }
 
     @Test
     public void test03() {

@@ -31,8 +31,14 @@
         </where>
     </select>
 
+    <sql id="column" >
+        id, emp_name empName, age, emp_salary empSalary
+    </sql>
+
     <select id="getEmpsByIdIn" resultType="com.atguigu.mybatis.bean.Emp">
-        select * from t_emp
+        select
+        <include refid="column"></include>
+        from t_emp
         <if test="ids != null">
             <foreach collection="ids" item="id" open="where id in (" close=")" separator=",">
                 #{id}
@@ -68,5 +74,32 @@
 
         where id = #{id}
     </update>
+
+    <update id="updateEmps">
+        <foreach collection="emps" item="e" separator=";">
+            update t_emp
+            <set>
+                <if test="e.empName != null">
+                    emp_name = #{e.empName}
+                </if>
+                <if test="e.age != null">
+                    age = #{e.age},
+                </if>
+                <if test="e.empSalary != null">
+                    emp_salary = #{e.empSalary}
+                </if>
+            </set>
+            where id = #{e.id}
+        </foreach>
+
+    </update>
+
+    <insert id="addEmps">
+        insert into t_emp(emp_name, age, emp_salary)
+        values
+        <foreach collection="emps" item="emp" separator=",">
+            (#{emp.empName}, #{emp.age}, #{emp.empSalary})
+        </foreach>
+    </insert>
 
 </mapper>
