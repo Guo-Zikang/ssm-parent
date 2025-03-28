@@ -1,5 +1,6 @@
 package com.atguigu.boot;
 
+import com.atguigu.boot.bean.Person;
 import com.atguigu.boot.properties.DogProperties;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,14 @@ class Springboot01DemoApplicationTests {
 	@Autowired
 	DogProperties dogProperties;
 
+	@Autowired
+	Person person;
+
 	@Test
 	void contextLoads() {
-		System.out.println("dogProperties = " + dogProperties);
+//		System.out.println("dogProperties = " + dogProperties);
+		System.out.println("person = " + person);
 	}
+
 
 }
